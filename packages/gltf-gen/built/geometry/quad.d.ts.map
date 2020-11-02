@@ -1,0 +1,1 @@
+{"version":3,"file":"quad.d.ts","sourceRoot":"","sources":["../../src/geometry/quad.ts"],"names":[],"mappings":"AAAA;;;GAGG;AAEH,OAAO,EAAE,QAAQ,EAAE,aAAa,EAAU,MAAM,IAAI,CAAC;AAGrD;;GAEG;AACH,qBAAa,IAAK,SAAQ,aAAa;IACtC;;;;;OAKG;gBACgB,KAAK,EAAE,MAAM,EAAE,MAAM,EAAE,MAAM,EAAE,QAAQ,GAAE,QAAe;CA2B3E"}

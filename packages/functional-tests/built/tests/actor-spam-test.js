@@ -1,0 +1,146 @@
+"use strict";
+/*!
+ * Copyright (c) Microsoft Corporation. All rights reserved.
+ * Licensed under the MIT License.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = require("tslib");
+const MRE = tslib_1.__importStar(require("@microsoft/mixed-reality-extension-sdk"));
+const test_1 = require("../test");
+class ActorSpamTest extends test_1.Test {
+    constructor() {
+        super(...arguments);
+        this.expectedResultDescription = "Spawn lots of actors all at once";
+        this.modsOnly = true;
+    }
+    async run(root) {
+        this.assets = new MRE.AssetContainer(this.app.context);
+        const buttonMesh = this.assets.createBoxMesh('button', .1, .1, .01);
+        const twentyFive = MRE.Actor.Create(this.app.context, {
+            actor: {
+                name: 'twentyFiveButton',
+                parentId: root.id,
+                transform: { local: { position: { x: -1, y: 1.2, z: -1 } } },
+                appearance: { meshId: buttonMesh.id },
+                collider: { geometry: { shape: MRE.ColliderType.Auto } }
+            }
+        });
+        MRE.Actor.Create(this.app.context, {
+            actor: {
+                name: 'label',
+                parentId: twentyFive.id,
+                transform: { local: { position: { y: 0.06 } } },
+                text: {
+                    contents: '25 actors',
+                    height: 0.1,
+                    anchor: MRE.TextAnchorLocation.BottomCenter,
+                    color: MRE.Color3.Teal()
+                }
+            }
+        });
+        twentyFive.setBehavior(MRE.ButtonBehavior).onClick(() => this.spawnActors(root, 25));
+        const fifty = MRE.Actor.Create(this.app.context, {
+            actor: {
+                name: 'fiftyButton',
+                parentId: root.id,
+                transform: { local: { position: { x: -0.33, y: 1.2, z: -1 } } },
+                appearance: { meshId: buttonMesh.id },
+                collider: { geometry: { shape: MRE.ColliderType.Auto } }
+            }
+        });
+        MRE.Actor.Create(this.app.context, {
+            actor: {
+                name: 'label',
+                parentId: fifty.id,
+                transform: { local: { position: { y: 0.06 } } },
+                text: {
+                    contents: '50 actors',
+                    height: 0.1,
+                    anchor: MRE.TextAnchorLocation.BottomCenter,
+                    color: MRE.Color3.Teal()
+                }
+            }
+        });
+        fifty.setBehavior(MRE.ButtonBehavior).onClick(() => this.spawnActors(root, 50));
+        const hundred = MRE.Actor.Create(this.app.context, {
+            actor: {
+                name: 'hundredButton',
+                parentId: root.id,
+                transform: { local: { position: { x: 0.33, y: 1.2, z: -1 } } },
+                appearance: { meshId: buttonMesh.id },
+                collider: { geometry: { shape: MRE.ColliderType.Auto } }
+            }
+        });
+        MRE.Actor.Create(this.app.context, {
+            actor: {
+                name: 'label',
+                parentId: hundred.id,
+                transform: { local: { position: { y: 0.06 } } },
+                text: {
+                    contents: '100 actors',
+                    height: 0.1,
+                    anchor: MRE.TextAnchorLocation.BottomCenter,
+                    color: MRE.Color3.Teal()
+                }
+            }
+        });
+        hundred.setBehavior(MRE.ButtonBehavior).onClick(() => this.spawnActors(root, 100));
+        const twoHundred = MRE.Actor.Create(this.app.context, {
+            actor: {
+                name: 'twoHundredButton',
+                parentId: root.id,
+                transform: { local: { position: { x: 1, y: 1.2, z: -1 } } },
+                appearance: { meshId: buttonMesh.id },
+                collider: { geometry: { shape: MRE.ColliderType.Auto } }
+            }
+        });
+        MRE.Actor.Create(this.app.context, {
+            actor: {
+                name: 'label',
+                parentId: twoHundred.id,
+                transform: { local: { position: { y: 0.06 } } },
+                text: {
+                    contents: '200 actors',
+                    height: 0.1,
+                    anchor: MRE.TextAnchorLocation.BottomCenter,
+                    color: MRE.Color3.Teal()
+                }
+            }
+        });
+        twoHundred.setBehavior(MRE.ButtonBehavior).onClick(() => this.spawnActors(root, 200));
+        await this.stoppedAsync();
+        return true;
+    }
+    spawnActors(root, count) {
+        if (this.spamRoot) {
+            this.spamRoot.destroy();
+        }
+        const ball = this.assets.meshes.find(m => m.name === 'ball')
+            || this.assets.createSphereMesh('ball', 0.05);
+        this.spamRoot = MRE.Actor.Create(this.app.context, {
+            actor: {
+                name: 'spamRoot',
+                parentId: root.id,
+                transform: { local: { position: { y: 1, z: -1 } } }
+            }
+        });
+        const grid = new MRE.PlanarGridLayout(this.spamRoot, MRE.BoxAlignment.BottomCenter);
+        const spacing = 2 / (25 - 1);
+        for (let i = 0; i < count; i++) {
+            grid.addCell({
+                row: Math.floor(i / 25),
+                column: i % 25,
+                width: spacing,
+                height: spacing,
+                contents: MRE.Actor.Create(this.app.context, { actor: {
+                        name: 'ball',
+                        parentId: this.spamRoot.id,
+                        appearance: { meshId: ball.id }
+                    } })
+            });
+        }
+        grid.applyLayout();
+    }
+}
+exports.default = ActorSpamTest;
+//# sourceMappingURL=actor-spam-test.js.map

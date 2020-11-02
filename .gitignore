@@ -328,7 +328,7 @@ app.zip
 
 # MRE SDK
 node_modules
-built
+# built
 npm-debug.log
 lerna-debug.log
 .openode

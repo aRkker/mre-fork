@@ -1,0 +1,1 @@
+{"version":3,"file":"empty.d.ts","sourceRoot":"","sources":["../../src/tests/empty.ts"],"names":[],"mappings":"AAAA;;;GAGG;;AAEH,OAAO,EAAE,IAAI,EAAE,MAAM,GAAG,CAAC;AAGzB,cAAc;AACd,MAAM,CAAC,OAAO,OAAO,SAAU,YAAW,IAAI;IACtC,IAAI,SAAgB;IACpB,eAAe,UAAS;IACxB,iBAAiB,UAAS;IAE1B,GAAG,IAAI,MAAM;CAIpB"}

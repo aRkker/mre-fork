@@ -1,0 +1,1 @@
+{"version":3,"file":"capsule.d.ts","sourceRoot":"","sources":["../../src/geometry/capsule.ts"],"names":[],"mappings":"AAAA;;;GAGG;AAEH,OAAO,EAAE,QAAQ,EAAE,aAAa,EAAU,MAAM,IAAI,CAAC;AAGrD;;GAEG;AACH,qBAAa,OAAQ,SAAQ,aAAa;IACzC;;;;;;;;OAQG;gBAEF,MAAM,EAAE,MAAM,EAAE,MAAM,EAAE,MAAM,EAAE,SAAS,SAAK,EAAE,QAAQ,SAAI,EAAE,aAAa,SAAM,EAAE,QAAQ,GAAE,QAAe;CAwF7G"}

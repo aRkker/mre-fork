@@ -1,0 +1,1 @@
+{"version":3,"file":"singleEventFilter.d.ts","sourceRoot":"","sources":["../src/singleEventFilter.ts"],"names":[],"mappings":"AAAA;;;GAGG;AAEH,OAAO,KAAK,GAAG,MAAM,wCAAwC,CAAC;AAE9D;;;;;;;;;;;;;;;;;;;;;;;;GAwBG;AACH,qBAAa,iBAAkB,SAAQ,GAAG,CAAC,UAAU;IACpD,OAAO,CAAC,cAAc,CAAS;IAE/B,kBAAkB;gBACN,OAAO,EAAE,GAAG,CAAC,kBAAkB;IAI3C,SAAS,CAAC,sBAAsB,CAAC,IAAI,EAAE,GAAG,CAAC,IAAI;CAQ/C"}

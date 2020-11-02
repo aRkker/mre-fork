@@ -1,0 +1,1 @@
+{"version":3,"file":"meshprimitive.d.ts","sourceRoot":"","sources":["../../src/tests/meshprimitive.ts"],"names":[],"mappings":"AAAA;;;GAGG;;AAGH,OAAO,EAAE,IAAI,EAAE,MAAM,SAAS,CAAC;AAE/B,cAAc;AACd,MAAM,CAAC,OAAO,OAAO,aAAc,YAAW,IAAI;IAC1C,IAAI,SAAmB;IACvB,eAAe,UAAQ;IACvB,iBAAiB,UAAQ;IAEzB,GAAG;CAqBV"}

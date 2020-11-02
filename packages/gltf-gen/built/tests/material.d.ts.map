@@ -1,0 +1,1 @@
+{"version":3,"file":"material.d.ts","sourceRoot":"","sources":["../../src/tests/material.ts"],"names":[],"mappings":"AAAA;;;GAGG;;AAGH,OAAO,EAAE,IAAI,EAAE,MAAM,GAAG,CAAC;AAGzB,cAAc;AACd,MAAM,CAAC,OAAO,OAAO,YAAa,YAAW,IAAI;IACzC,IAAI,SAAc;IAClB,eAAe,UAAQ;IACvB,iBAAiB,UAAS;IAE1B,GAAG,IAAI,MAAM;CAiBpB"}

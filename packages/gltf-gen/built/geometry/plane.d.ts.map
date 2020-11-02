@@ -1,0 +1,1 @@
+{"version":3,"file":"plane.d.ts","sourceRoot":"","sources":["../../src/geometry/plane.ts"],"names":[],"mappings":"AAAA;;;GAGG;AAEH,OAAO,EAAE,QAAQ,EAAE,aAAa,EAAU,MAAM,IAAI,CAAC;AAGrD;;GAEG;AACH,qBAAa,KAAM,SAAQ,aAAa;IACvC;;;;;;;OAOG;gBACgB,KAAK,EAAE,MAAM,EAAE,MAAM,EAAE,MAAM,EAAE,SAAS,SAAK,EAAE,SAAS,SAAK,EAAE,QAAQ,GAAE,QAAe;CAkC3G"}
