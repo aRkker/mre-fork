@@ -67,7 +67,7 @@ export class ContextInternal {
 	}
 
 	public onSetAuthoritative = (userId: Guid) => {
-		this._rigidBodyOrphanSet.forEach( 
+		this._rigidBodyOrphanSet.forEach(
 			(value) => {
 				if (value === this._rigidBodyDefaultOwner) {
 					const actor = this.actorSet.get(value);
@@ -156,7 +156,7 @@ export class ContextInternal {
 			}
 		}
 
-		this.protocol.sendPayload( payload, {
+		this.protocol.sendPayload(payload, {
 			resolve: (replyPayload: Payloads.ObjectSpawned | Payloads.OperationResult) => {
 				this.protocol.recvPayload(replyPayload);
 				let success: boolean;
@@ -221,27 +221,27 @@ export class ContextInternal {
 
 		// kick off asset loading
 		container.loadGltf(options.uri, options.colliderType)
-		.then(assets => {
-			if (!this.context.actor(actor.id)) {
-				// actor was destroyed, stop loading
-				return;
-			}
+			.then(assets => {
+				if (!this.context.actor(actor.id)) {
+					// actor was destroyed, stop loading
+					return;
+				}
 
-			// once assets are done, find first prefab...
-			const prefab = assets.find(a => !!a.prefab);
-			if (!prefab) {
-				actor.internal.notifyCreated(false, `glTF contains no prefabs: ${options.uri}`);
-				return;
-			}
+				// once assets are done, find first prefab...
+				const prefab = assets.find(a => !!a.prefab);
+				if (!prefab) {
+					actor.internal.notifyCreated(false, `glTF contains no prefabs: ${options.uri}`);
+					return;
+				}
 
-			// ...and spawn it
-			this.createActorFromPayload({
-				type: 'create-from-prefab',
-				prefabId: prefab.id,
-				actor: options.actor
-			} as Payloads.CreateFromPrefab);
-		})
-		.catch(reason => actor.internal.notifyCreated(false, reason));
+				// ...and spawn it
+				this.createActorFromPayload({
+					type: 'create-from-prefab',
+					prefabId: prefab.id,
+					actor: options.actor
+				} as Payloads.CreateFromPrefab);
+			})
+			.catch(reason => actor.internal.notifyCreated(false, reason));
 
 		return actor;
 	}
@@ -314,7 +314,7 @@ export class ContextInternal {
 			execution.on('protocol.update-user', this.updateUser.bind(this));
 			execution.on('protocol.perform-action', this.performAction.bind(this));
 			execution.on('protocol.physicsbridge-update-transforms', this.updatePhysicsBridgeTransforms.bind(this));
-			execution.on('protocol.physicsbridge-server-transforms-upload', 
+			execution.on('protocol.physicsbridge-server-transforms-upload',
 				this.updatePhysicsServerTransformsUpload.bind(this));
 			execution.on('protocol.receive-rpc', this.receiveRPC.bind(this));
 			execution.on('protocol.collision-event-raised', this.collisionEventRaised.bind(this));
@@ -453,7 +453,7 @@ export class ContextInternal {
 			actor.copy(sactor);
 			if (isNewActor) {
 				newActorIds.push(actor.id);
-				if (actor.rigidBody) {	
+				if (actor.rigidBody) {
 					if (!actor.owner) {
 						actor.owner = this._rigidBodyDefaultOwner;
 					}
@@ -472,7 +472,7 @@ export class ContextInternal {
 		this.context.emitter.emit('physicsbridge-transforms-update', transforms);
 	}
 
-	public updatePhysicsServerTransformsUpload(transforms: Partial<PhysicsUploadServerTransformsUpdate>){
+	public updatePhysicsServerTransformsUpload(transforms: Partial<PhysicsUploadServerTransformsUpdate>) {
 		if (!transforms) { return; }
 		this.context.emitter.emit('physicsbridge-server-transforms-upload', transforms);
 	}
@@ -531,7 +531,7 @@ export class ContextInternal {
 			this.context.emitter.emit('user-left', user);
 
 			if (userId !== this._rigidBodyDefaultOwner) {
-				this._rigidBodyOwnerMap.forEach( (value, key) => {
+				this._rigidBodyOwnerMap.forEach((value, key) => {
 					if (value === userId) {
 						const actor = this.actorSet.get(key);
 						actor.owner = this._rigidBodyDefaultOwner;
@@ -539,7 +539,7 @@ export class ContextInternal {
 					}
 				})
 			} else {
-				this._rigidBodyOwnerMap.forEach( 
+				this._rigidBodyOwnerMap.forEach(
 					(value, key) => {
 						if (value === userId) {
 							const actor = this.actorSet.get(key);

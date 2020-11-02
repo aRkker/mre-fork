@@ -305,7 +305,7 @@ export const Rules: { [id in Payloads.PayloadType]: Rule } = {
 				message: Message<Payloads.ActorCorrection>
 			) => {
 				const syncActor = session.actorSet.get(message.payload.actorId);
-				if (syncActor && ((client.authoritative && !syncActor.grabbedBy)
+				if (syncActor && ((!syncActor.grabbedBy)
 					|| (syncActor.grabbedBy === client.id))) {
 					const correctionPayload = message.payload;
 
@@ -400,7 +400,7 @@ export const Rules: { [id in Payloads.PayloadType]: Rule } = {
 				message: Message<Payloads.ActorUpdate>
 			) => {
 				const syncActor = session.actorSet.get(message.payload.actor.id);
-				if (syncActor && ((client.authoritative && !syncActor.grabbedBy) ||
+				if (syncActor && ((!syncActor.grabbedBy) ||
 					(syncActor.grabbedBy === client.id))) {
 					// Merge the update into the existing actor.
 					session.cacheActorUpdateMessage(message);
@@ -844,7 +844,7 @@ export const Rules: { [id in Payloads.PayloadType]: Rule } = {
 				message: Message<Payloads.PhysicsUploadServerUpdate>,
 				promise: ExportedPromise
 			) => {
-				
+
 				return message;
 			},
 			shouldSendToUser: (message: Message<Payloads.PhysicsUploadServerUpdate>, userId, session, client) => {
@@ -871,9 +871,9 @@ export const Rules: { [id in Payloads.PayloadType]: Rule } = {
 					const syncActor = session.actorSet.get(entry.actorGuid);
 					if (syncActor) {
 						syncActor.initialization.message.payload.actor.transform.app = entry.appTransform;
-						syncActor.initialization.message.payload.actor.transform.local.position = 
+						syncActor.initialization.message.payload.actor.transform.local.position =
 							entry.localTransform.position;
-						syncActor.initialization.message.payload.actor.transform.local.rotation = 
+						syncActor.initialization.message.payload.actor.transform.local.rotation =
 							entry.localTransform.rotation;
 					}
 				}

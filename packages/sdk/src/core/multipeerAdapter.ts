@@ -28,7 +28,7 @@ import {
 	WebSocket
 } from '../internal';
 
-const forwarded: (res: http.IncomingMessage, headers: http.IncomingHttpHeaders) => {ip: string; port: number}
+const forwarded: (res: http.IncomingMessage, headers: http.IncomingHttpHeaders) => { ip: string; port: number }
 	= require('forwarded-for'); /* eslint-disable-line @typescript-eslint/no-var-requires */
 
 /**
