@@ -96,14 +96,17 @@ export class AssetContainer {
 	 * @param name The new sound's name
 	 * @param definition The initial sound properties. The `uri` property is required.
 	 */
-	public createSound(name: string, definition: Partial<SoundLike>): Sound {
+	public createSound(name: string, definition: Partial<SoundLike>): Promise<Sound> {
 		const sound = new Sound(this, {
 			id: newGuid(),
 			name,
 			sound: resolveJsonValues(definition)
 		});
-		sound.setLoadedPromise(this.sendCreateAsset(sound));
-		return sound;
+		// sound.setLoadedPromise(this.sendCreateAsset(sound));
+		return this.sendCreateAsset(sound).then(() => {
+			return sound;
+		})
+
 	}
 
 	/**
@@ -310,7 +313,7 @@ export class AssetContainer {
 				containerId: this.id
 			} as Payloads.UnloadAssets);
 		})
-		.catch(err => log.error('app', err));
+			.catch(err => log.error('app', err));
 	}
 
 	private async sendCreateAsset(asset: Asset): Promise<void> {
@@ -320,16 +323,18 @@ export class AssetContainer {
 
 		this._assets.set(asset.id, asset);
 
-		const reply = await this.context.internal.sendPayloadAndGetReply<Payloads.CreateAsset, Payloads.AssetsLoaded>({
+		const reply = this.context.internal.sendPayloadAndGetReply<Payloads.CreateAsset, Payloads.AssetsLoaded>({
 			type: 'create-asset',
 			containerId: this.id,
 			definition: resolveJsonValues(asset)
-		});
+		}).then(reply => {
+			if (reply.failureMessage || reply.assets.length !== 1) {
+				throw new Error(`Creation/Loading of asset ${asset.name} failed: ${reply.failureMessage}`);
+			}
 
-		if (reply.failureMessage || reply.assets.length !== 1) {
-			throw new Error(`Creation/Loading of asset ${asset.name} failed: ${reply.failureMessage}`);
-		}
+			asset.copy(reply.assets[0]);
+		})
 
-		asset.copy(reply.assets[0]);
+
 	}
 }
