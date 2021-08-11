@@ -81,10 +81,13 @@ export class MediaInstance {
 	 * Finish the media playback and destroy the instance.
 	 */
 	public stop() {
-		this.actor.context.internal.lookupAsset(this.mediaAssetId).created.then(() => {
+		try {
+			// this.actor.context.internal.lookupAsset(this.mediaAssetId).created.then(() => {
 			this.actor.context.internal.setMediaState(this, MediaCommand.Stop);
-		}).catch((reason: any) => {
+			// }).catch((reason: any) => {
+		} catch (reason) {
 			log.error('app', `Stop failed ${this.actor.id}. ${(reason || '').toString()}`.trim());
-		});
+			// });
+		}
 	}
 }

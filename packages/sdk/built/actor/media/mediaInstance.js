@@ -66,11 +66,15 @@ class MediaInstance {
      * Finish the media playback and destroy the instance.
      */
     stop() {
-        this.actor.context.internal.lookupAsset(this.mediaAssetId).created.then(() => {
+        try {
+            // this.actor.context.internal.lookupAsset(this.mediaAssetId).created.then(() => {
             this.actor.context.internal.setMediaState(this, __1.MediaCommand.Stop);
-        }).catch((reason) => {
+            // }).catch((reason: any) => {
+        }
+        catch (reason) {
             __1.log.error('app', `Stop failed ${this.actor.id}. ${(reason || '').toString()}`.trim());
-        });
+            // });
+        }
     }
 }
 exports.MediaInstance = MediaInstance;
