@@ -316,14 +316,14 @@ export class AssetContainer {
 			.catch(err => log.error('app', err));
 	}
 
-	private async sendCreateAsset(asset: Asset): Promise<void> {
+	private sendCreateAsset(asset: Asset): Promise<void> {
 		if (!this._assets) {
 			throw new Error("Cannot load new assets into an unloaded container!");
 		}
 
 		this._assets.set(asset.id, asset);
 
-		const reply = this.context.internal.sendPayloadAndGetReply<Payloads.CreateAsset, Payloads.AssetsLoaded>({
+		return this.context.internal.sendPayloadAndGetReply<Payloads.CreateAsset, Payloads.AssetsLoaded>({
 			type: 'create-asset',
 			containerId: this.id,
 			definition: resolveJsonValues(asset)

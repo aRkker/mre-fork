@@ -17,15 +17,17 @@ class ClientDesyncPreprocessor {
     beforeSend(message, promise) {
         const payloadType = message.payload.type;
         const rule = internal_1.Rules[payloadType] || internal_1.MissingRule;
-        const forUser = rule.client.shouldSendToUser(message, this.client.userId, this.client.session, this.client);
-        if (forUser !== null && !this.client.userId) {
-            // this message is user-exclusive, and the client's user ID is not yet settled,
-            // queue and cancel send for now
-            this.client.userExclusiveMessages.push({ message, promise });
-        }
-        else if (forUser === null || forUser === true && !!this.client.userId) {
-            // this message is intended for this client's user, send now
-            return message;
+        if (rule.client) {
+            const forUser = rule.client.shouldSendToUser(message, this.client.userId, this.client.session, this.client);
+            if (forUser !== null && !this.client.userId) {
+                // this message is user-exclusive, and the client's user ID is not yet settled,
+                // queue and cancel send for now
+                this.client.userExclusiveMessages.push({ message, promise });
+            }
+            else if (forUser === null || forUser === true && !!this.client.userId) {
+                // this message is intended for this client's user, send now
+                return message;
+            }
         }
         // this message is intended for a different user, discard
     }

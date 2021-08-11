@@ -1023,7 +1023,9 @@ export const Rules: { [id in Payloads.PayloadType]: Rule } = {
 		client: {
 			...DefaultRule.client,
 			shouldSendToUser: (message: Message<Payloads.SetMediaState>, userId, session, client) => {
-				const exclusiveUser = session.actorSet.get(message.payload.actorId).exclusiveToUser;
+				const exclusiveUser = session.actorSet.get(message.payload.actorId) ?
+					session.actorSet.get(message.payload.actorId).exclusiveToUser :
+					null;
 				return exclusiveUser ? exclusiveUser === userId : null;
 			}
 		},

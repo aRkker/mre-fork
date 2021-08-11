@@ -76,8 +76,10 @@ class AssetContainer {
             name,
             sound: internal_1.resolveJsonValues(definition)
         });
-        sound.setLoadedPromise(this.sendCreateAsset(sound));
-        return sound;
+        // sound.setLoadedPromise(this.sendCreateAsset(sound));
+        return this.sendCreateAsset(sound).then(() => {
+            return sound;
+        });
     }
     /**
      * Preload a video stream and generate a new video stream asset
@@ -263,20 +265,21 @@ class AssetContainer {
         })
             .catch(err => __1.log.error('app', err));
     }
-    async sendCreateAsset(asset) {
+    sendCreateAsset(asset) {
         if (!this._assets) {
             throw new Error("Cannot load new assets into an unloaded container!");
         }
         this._assets.set(asset.id, asset);
-        const reply = await this.context.internal.sendPayloadAndGetReply({
+        return this.context.internal.sendPayloadAndGetReply({
             type: 'create-asset',
             containerId: this.id,
             definition: internal_1.resolveJsonValues(asset)
+        }).then(reply => {
+            if (reply.failureMessage || reply.assets.length !== 1) {
+                throw new Error(`Creation/Loading of asset ${asset.name} failed: ${reply.failureMessage}`);
+            }
+            asset.copy(reply.assets[0]);
         });
-        if (reply.failureMessage || reply.assets.length !== 1) {
-            throw new Error(`Creation/Loading of asset ${asset.name} failed: ${reply.failureMessage}`);
-        }
-        asset.copy(reply.assets[0]);
     }
 }
 exports.AssetContainer = AssetContainer;

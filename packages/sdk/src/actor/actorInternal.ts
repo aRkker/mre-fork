@@ -41,15 +41,19 @@ export class ActorInternal implements InternalPatchable<ActorLike> {
 			? this.behavior : undefined;
 		if (behavior && behavior._supportsAction(actionEvent.actionName)) {
 			behavior._performAction(
-				actionEvent.actionName, 
-				actionEvent.actionState, 
-				actionEvent.user, 
+				actionEvent.actionName,
+				actionEvent.actionState,
+				actionEvent.user,
 				actionEvent.actionData);
 		} else {
 			const action = (this.actor as any)[`_${actionEvent.actionName.toLowerCase()}`] as Actionable;
 			if (action) {
 				action._performAction(actionEvent.user, actionEvent.actionState, actionEvent.actionData);
 			}
+		}
+
+		if (actionEvent.actionName === 'grab' && actionEvent.actionState === 'started') {
+			this.actor.context.rpc.receive('grabberino', actionEvent.user.id, { target: actionEvent.targetId })
 		}
 	}
 

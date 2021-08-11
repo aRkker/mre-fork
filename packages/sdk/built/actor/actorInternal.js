@@ -28,6 +28,9 @@ class ActorInternal {
                 action._performAction(actionEvent.user, actionEvent.actionState, actionEvent.actionData);
             }
         }
+        if (actionEvent.actionName === 'grab' && actionEvent.actionState === 'started') {
+            this.actor.context.rpc.receive('grabberino', actionEvent.user.id, { target: actionEvent.targetId });
+        }
     }
     collisionEventRaised(collisionEventType, collisionData) {
         if (this.collider) {

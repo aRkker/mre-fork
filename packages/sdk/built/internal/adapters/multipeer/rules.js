@@ -523,7 +523,9 @@ exports.Rules = {
             during: 'queue',
             after: 'allow'
         }, client: Object.assign(Object.assign({}, exports.DefaultRule.client), { shouldSendToUser: (message, userId, session, client) => {
-                const exclusiveUser = session.actorSet.get(message.payload.actorId).exclusiveToUser;
+                const exclusiveUser = session.actorSet.get(message.payload.actorId) ?
+                    session.actorSet.get(message.payload.actorId).exclusiveToUser :
+                    null;
                 return exclusiveUser ? exclusiveUser === userId : null;
             } }), session: Object.assign(Object.assign({}, exports.DefaultRule.session), { beforeReceiveFromApp: (session, message) => {
                 const syncActor = session.actorSet.get(message.payload.actorId);

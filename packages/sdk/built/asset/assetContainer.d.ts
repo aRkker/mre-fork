@@ -49,7 +49,7 @@ export declare class AssetContainer {
      * @param name The new sound's name
      * @param definition The initial sound properties. The `uri` property is required.
      */
-    createSound(name: string, definition: Partial<SoundLike>): Sound;
+    createSound(name: string, definition: Partial<SoundLike>): Promise<Sound>;
     /**
      * Preload a video stream and generate a new video stream asset
      * @param name The new stream's name
