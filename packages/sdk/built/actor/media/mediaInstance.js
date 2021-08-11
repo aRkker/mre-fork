@@ -38,11 +38,17 @@ class MediaInstance {
      * @param options Adjustments to pitch and volume, and other characteristics.
      */
     setState(options) {
-        this.actor.context.internal.lookupAsset(this.mediaAssetId).created.then(() => {
+        // this.actor.context.internal.lookupAsset(this.mediaAssetId).created.then(() => {
+        // 	this.actor.context.internal.setMediaState(this, MediaCommand.Update, options);
+        // }).catch((reason: any) => {
+        // 	log.error('app', `SetState failed ${this.actor.id}. ${(reason || '').toString()}`.trim());
+        // });
+        try {
             this.actor.context.internal.setMediaState(this, __1.MediaCommand.Update, options);
-        }).catch((reason) => {
+        }
+        catch (reason) {
             __1.log.error('app', `SetState failed ${this.actor.id}. ${(reason || '').toString()}`.trim());
-        });
+        }
     }
     /**
      * Pause the media playback

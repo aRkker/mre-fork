@@ -51,11 +51,16 @@ export class MediaInstance {
 	 * @param options Adjustments to pitch and volume, and other characteristics.
 	 */
 	public setState(options: SetMediaStateOptions) {
-		this.actor.context.internal.lookupAsset(this.mediaAssetId).created.then(() => {
+		// this.actor.context.internal.lookupAsset(this.mediaAssetId).created.then(() => {
+		// 	this.actor.context.internal.setMediaState(this, MediaCommand.Update, options);
+		// }).catch((reason: any) => {
+		// 	log.error('app', `SetState failed ${this.actor.id}. ${(reason || '').toString()}`.trim());
+		// });
+		try {
 			this.actor.context.internal.setMediaState(this, MediaCommand.Update, options);
-		}).catch((reason: any) => {
+		} catch (reason) {
 			log.error('app', `SetState failed ${this.actor.id}. ${(reason || '').toString()}`.trim());
-		});
+		}
 	}
 
 	/**
