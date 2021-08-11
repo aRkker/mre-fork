@@ -32,15 +32,20 @@ export class MediaInstance {
 	 * @hidden
 	 */
 	public start(options: SetMediaStateOptions): MediaInstance {
-		this.actor.context.internal.lookupAsset(this.mediaAssetId).created.then(() => {
-			this.actor.context.internal.setMediaState(
-				this, MediaCommand.Start, options, this.mediaAssetId);
-		}).catch(reason => {
-			log.error('app', `Start failed ${this.actor.id}. ${(reason || '').toString()}`.trim());
-		});
-		return this;
-	}
+		// this.actor.context.internal.lookupAsset(this.mediaAssetId).created.then(() => {
+		// 	this.actor.context.internal.setMediaState(
+		// 		this, MediaCommand.Start, options, this.mediaAssetId);
+		// }).catch(reason => {
+		// 	log.error('app', `Start failed ${this.actor.id}. ${(reason || '').toString()}`.trim());
+		// });
+		try {
+			this.actor.context.internal.setMediaState(this, MediaCommand.Start, options, this.mediaAssetId);
+			return this;
 
+		} catch (reason) {
+			log.error('app', `Start failed ${this.actor.id}. ${(reason || '').toString()}`.trim());
+		}
+	}
 	/**
 	 * Updates the state of the active media
 	 * @param options Adjustments to pitch and volume, and other characteristics.

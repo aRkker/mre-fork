@@ -19,12 +19,19 @@ class MediaInstance {
      * @hidden
      */
     start(options) {
-        this.actor.context.internal.lookupAsset(this.mediaAssetId).created.then(() => {
+        // this.actor.context.internal.lookupAsset(this.mediaAssetId).created.then(() => {
+        // 	this.actor.context.internal.setMediaState(
+        // 		this, MediaCommand.Start, options, this.mediaAssetId);
+        // }).catch(reason => {
+        // 	log.error('app', `Start failed ${this.actor.id}. ${(reason || '').toString()}`.trim());
+        // });
+        try {
             this.actor.context.internal.setMediaState(this, __1.MediaCommand.Start, options, this.mediaAssetId);
-        }).catch(reason => {
+            return this;
+        }
+        catch (reason) {
             __1.log.error('app', `Start failed ${this.actor.id}. ${(reason || '').toString()}`.trim());
-        });
-        return this;
+        }
     }
     /**
      * Updates the state of the active media
