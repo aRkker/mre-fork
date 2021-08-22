@@ -262,6 +262,7 @@ class AssetContainer {
                 type: 'unload-assets',
                 containerId: this.id
             });
+            this._assets = new Map();
         })
             .catch(err => __1.log.error('app', err));
     }

@@ -312,6 +312,8 @@ export class AssetContainer {
 				type: 'unload-assets',
 				containerId: this.id
 			} as Payloads.UnloadAssets);
+
+			this._assets = new Map<Guid, Asset>();
 		})
 			.catch(err => log.error('app', err));
 	}
