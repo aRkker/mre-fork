@@ -81,6 +81,26 @@ class AssetContainer {
             return sound;
         });
     }
+    async createSoundNew(name, definition) {
+        if (!this._assets) {
+            throw new Error("Cannot load new assets into an unloaded container!");
+        }
+        const source = {
+            uri: definition.uri
+        };
+        const payload = {
+            type: 'load-assets',
+            containerId: this.id,
+            source
+        };
+        const response = await this.context.internal
+            .sendPayloadAndGetReply(payload);
+        if (response.failureMessage) {
+            throw new Error(response.failureMessage);
+        }
+        const s = response.assets[0];
+        return s;
+    }
     /**
      * Preload a video stream and generate a new video stream asset
      * @param name The new stream's name
