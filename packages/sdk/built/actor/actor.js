@@ -110,6 +110,15 @@ class Actor {
      * PUBLIC METHODS
      */
     /**
+    * Destroys the collider.
+    */
+    clearCollider() {
+        if (this._collider) {
+            internal_1.unobserve(this._collider);
+            this._collider = null;
+        }
+    }
+    /**
      * Creates a new, empty actor without geometry.
      * @param context The SDK context object.
      * @param options.actor The initial state of the actor.
@@ -253,15 +262,11 @@ class Actor {
     setCollider(colliderType, 
     // collisionLayer: CollisionLayer,
     isTrigger, size, center = { x: 0, y: 0, z: 0 }) {
-        const colliderGeometry = this.generateColliderGeometry(colliderType, size, center);
-        if (colliderGeometry) {
-            this._setCollider({
-                enabled: true,
-                isTrigger,
-                // collisionLayer,
-                geometry: colliderGeometry
-            });
-        }
+        this._setCollider({
+            enabled: true,
+            isTrigger,
+            geometry: { shape: colliderType, size, center }
+        });
     }
     /**
      * Adds a text component to the actor.
@@ -574,23 +579,41 @@ class Actor {
         }
     }
     _setCollider(collider) {
-        const oldCollider = this._collider;
-        if (this._collider) {
-            internal_1.unobserve(this._collider);
-            this._collider = undefined;
+        let size = null;
+        let center = null;
+        if (collider.geometry.shape === __1.ColliderType.Box) {
+            size = collider.geometry.size;
+            center = collider.geometry.center;
         }
-        this._collider = new __1.Collider(this, collider);
-        if (oldCollider) {
-            this._collider.internal.copyHandlers(oldCollider.internal);
+        else if (collider.geometry.shape === __1.ColliderType.Sphere) {
+            size = collider.geometry.radius;
+            center = collider.geometry.center;
         }
-        // Actor patching: Observe the collider component for changed values.
-        internal_1.observe({
-            target: this._collider,
-            targetName: 'collider',
-            notifyChanged: (...path) => this.actorChanged(...path),
-            // Trigger notifications for every observed leaf node to ensure we get all values in the initial patch.
-            triggerNotificationsNow: true
-        });
+        else if (collider.geometry.shape === __1.ColliderType.Capsule) {
+            size = collider.geometry.size;
+            center = collider.geometry.center;
+        }
+        const geometry = this.generateColliderGeometry(collider.geometry.shape, size, center);
+        if (geometry) {
+            collider = Object.assign(Object.assign({}, collider), { geometry });
+            const oldCollider = this._collider;
+            if (this._collider) {
+                internal_1.unobserve(this._collider);
+                this._collider = undefined;
+            }
+            this._collider = new __1.Collider(this, collider);
+            if (oldCollider) {
+                this._collider.internal.copyHandlers(oldCollider.internal);
+            }
+            // Actor patching: Observe the collider component for changed values.
+            internal_1.observe({
+                target: this._collider,
+                targetName: 'collider',
+                notifyChanged: (...path) => this.actorChanged(...path),
+                // Trigger notifications for every observed leaf node to ensure we get all values in the initial patch.
+                triggerNotificationsNow: true
+            });
+        }
     }
 }
 exports.Actor = Actor;

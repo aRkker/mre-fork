@@ -232,6 +232,9 @@ class Animation {
     delete() {
         this.context.internal.destroyAnimation(this.id);
     }
+    removeTargetId(id) {
+        this._targetIds = this._targetIds.filter(_id => _id !== id);
+    }
     /** @hidden */
     toJSON() {
         return {

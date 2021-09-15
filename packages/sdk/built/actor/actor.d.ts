@@ -99,6 +99,10 @@ export declare class Actor implements ActorLike, Patchable<ActorLike> {
      * PUBLIC METHODS
      */
     /**
+    * Destroys the collider.
+    */
+    clearCollider(): void;
+    /**
      * Creates a new, empty actor without geometry.
      * @param context The SDK context object.
      * @param options.actor The initial state of the actor.

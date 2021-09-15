@@ -315,6 +315,10 @@ export class Animation implements AnimationLike, Patchable<AnimationLike> {
 		this.context.internal.destroyAnimation(this.id);
 	}
 
+	public removeTargetId(id: Guid) {
+		this._targetIds = this._targetIds.filter(_id => _id !== id);
+	}
+
 	/** @hidden */
 	public toJSON(): AnimationLike {
 		return {

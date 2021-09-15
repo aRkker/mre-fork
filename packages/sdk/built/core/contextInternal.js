@@ -476,6 +476,22 @@ class ContextInternal {
         (actor.children || []).forEach(child => {
             this.localDestroyActor(child);
         });
+        for (const anim of actor.targetingAnimations.values()) {
+            anim.removeTargetId(actor.id);
+        }
+        if (actor.collider) {
+            actor.clearCollider();
+        }
+        //Remove mesh reference
+        if (actor.appearance.mesh) {
+            actor.appearance.mesh.clearReference(actor);
+            actor.appearance.mesh.breakReference(actor);
+        }
+        //Remove material reference
+        if (actor.appearance.material) {
+            actor.appearance.material.clearReference(actor);
+            actor.appearance.material.breakReference(actor);
+        }
         // Remove actor from _actors
         this.actorSet.delete(actor.id);
         if (this._rigidBodyOwnerMap.has(actor.id)) {

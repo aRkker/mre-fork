@@ -37,6 +37,7 @@ class ColliderInternal {
         for (const event of other._eventHandlers.eventNames()) {
             for (const handler of other._eventHandlers.listeners(event)) {
                 this._eventHandlers.on(event, handler);
+                other._eventHandlers.off(event, handler);
             }
         }
     }

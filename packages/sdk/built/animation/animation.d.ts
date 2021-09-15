@@ -123,6 +123,7 @@ export declare class Animation implements AnimationLike, Patchable<AnimationLike
     isOrphan(): boolean;
     /** Destroy this animation. */
     delete(): void;
+    removeTargetId(id: Guid): void;
     /** @hidden */
     toJSON(): AnimationLike;
     /** @hidden */
