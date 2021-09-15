@@ -269,7 +269,7 @@ class AssetContainer {
         return newAssets;
     }
     /** Break references to all assets in the container, and unload them to free memory */
-    unload() {
+    unload(recreate) {
         for (const a of this.assets) {
             a.breakAllReferences();
         }
@@ -282,7 +282,9 @@ class AssetContainer {
                 type: 'unload-assets',
                 containerId: this.id
             });
-            this._assets = new Map();
+            if (recreate) {
+                this._assets = new Map();
+            }
         })
             .catch(err => __1.log.error('app', err));
     }

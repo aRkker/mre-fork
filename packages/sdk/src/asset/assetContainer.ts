@@ -324,7 +324,7 @@ export class AssetContainer {
 	}
 
 	/** Break references to all assets in the container, and unload them to free memory */
-	public unload(): void {
+	public unload(recreate?: boolean): void {
 		for (const a of this.assets) {
 			a.breakAllReferences();
 		}
@@ -339,7 +339,9 @@ export class AssetContainer {
 				containerId: this.id
 			} as Payloads.UnloadAssets);
 
-			this._assets = new Map<Guid, Asset>();
+			if (recreate) {
+				this._assets = new Map<Guid, Asset>();
+			}
 		})
 			.catch(err => log.error('app', err));
 	}

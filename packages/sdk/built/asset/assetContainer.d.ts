@@ -122,7 +122,7 @@ export declare class AssetContainer {
      */
     loadGltf(uri: string, colliderType?: 'box' | 'mesh'): Promise<Asset[]>;
     /** Break references to all assets in the container, and unload them to free memory */
-    unload(): void;
+    unload(recreate?: boolean): void;
     private sendCreateAsset;
 }
 //# sourceMappingURL=assetContainer.d.ts.map
