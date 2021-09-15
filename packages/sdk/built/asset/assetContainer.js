@@ -273,7 +273,9 @@ class AssetContainer {
         for (const a of this.assets) {
             a.breakAllReferences();
         }
-        this.context.internal.assetContainers.delete(this);
+        if (!recreate) {
+            this.context.internal.assetContainers.delete(this);
+        }
         this._assets = null;
         // wait until after the unassignments get propagated to clients to avoid visually
         // missing textures (renders black) and missing materials (renders magenta)
