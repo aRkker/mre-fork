@@ -22,4 +22,6 @@ export enum Permissions {
 	 * a user to the session at all.
 	 */
 	UserInteraction = 'user-interaction',
+
+	PlayThisapp = 'play-this-app'
 }

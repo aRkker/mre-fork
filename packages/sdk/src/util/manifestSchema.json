@@ -2,9 +2,15 @@
 	"$schema": "https://json-schema.org/draft-04/schema#",
 	"type": "object",
 	"properties": {
-		"name": { "type": "string" },
-		"description": { "type": "string" },
-		"author": { "type": "string" },
+		"name": {
+			"type": "string"
+		},
+		"description": {
+			"type": "string"
+		},
+		"author": {
+			"type": "string"
+		},
 		"license": {
 			"description": "An SPDX short license ID",
 			"type": "string"
@@ -18,7 +24,11 @@
 			"type": "array",
 			"items": {
 				"type": "string",
-				"enum": ["user-tracking", "user-interaction"]
+				"enum": [
+					"user-tracking",
+					"user-interaction",
+					"play-this-app"
+				]
 			}
 		},
 		"optionalPermissions": {
@@ -26,7 +36,10 @@
 			"type": "array",
 			"items": {
 				"type": "string",
-				"enum": ["user-tracking", "user-interaction"]
+				"enum": [
+					"user-tracking",
+					"user-interaction"
+				]
 			}
 		}
 	}
