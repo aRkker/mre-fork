@@ -34,14 +34,14 @@ export declare class Session extends EventEmitter {
     get clients(): Client[];
     get actors(): Partial<SyncActor>[];
     get assets(): Partial<SyncAsset>[];
-    get assetCreators(): Message<Payloads.CreateAsset | Payloads.LoadAssets>[];
+    get assetCreators(): Message<Payloads.LoadAssets | Payloads.CreateAsset>[];
     get animationSet(): Map<Guid, Partial<SyncAnimation>>;
     get animations(): IterableIterator<Partial<SyncAnimation>>;
     get animationCreators(): Message<Payloads.CreateActorCommon | Payloads.CreateAnimation2>[];
     get animationCreatorSet(): Map<Guid, Message<Payloads.CreateActorCommon | Payloads.CreateAnimation2>>;
     get actorSet(): Map<Guid, Partial<SyncActor>>;
     get assetSet(): Map<Guid, Partial<SyncAsset>>;
-    get assetCreatorSet(): Map<Guid, Message<Payloads.CreateAsset | Payloads.LoadAssets>>;
+    get assetCreatorSet(): Map<Guid, Message<Payloads.LoadAssets | Payloads.CreateAsset>>;
     get userSet(): Map<Guid, Partial<UserLike>>;
     get rootActors(): Partial<SyncActor>[];
     get authoritativeClient(): Client;

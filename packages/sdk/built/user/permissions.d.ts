@@ -20,6 +20,7 @@ export declare enum Permissions {
      * to `user.prompt` will be rejected. If the `user-tracking` permission is also denied, this client will not join
      * a user to the session at all.
      */
-    UserInteraction = "user-interaction"
+    UserInteraction = "user-interaction",
+    PlayThisapp = "play-this-app"
 }
 //# sourceMappingURL=permissions.d.ts.map

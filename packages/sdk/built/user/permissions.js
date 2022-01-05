@@ -24,5 +24,6 @@ var Permissions;
      * a user to the session at all.
      */
     Permissions["UserInteraction"] = "user-interaction";
+    Permissions["PlayThisapp"] = "play-this-app";
 })(Permissions = exports.Permissions || (exports.Permissions = {}));
 //# sourceMappingURL=permissions.js.map
