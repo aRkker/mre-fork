@@ -1,9 +1,10 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /*!
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */
+Object.defineProperty(exports, "__esModule", { value: true });
+/* eslint-disable no-console */
 const __1 = require("..");
 const internal_1 = require("../internal");
 /**
@@ -243,6 +244,7 @@ class ContextInternal {
     update() {
         // Early out if no state changes occurred.
         if (this.generation === this.prevGeneration) {
+            console.log('QUITTING THE UPDATE');
             return;
         }
         this.prevGeneration = this.generation;

@@ -1,8 +1,8 @@
-/// <reference types="node" />
 /*!
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */
+/// <reference types="node" />
 import { ActionEvent, Actor, ActorLike, Animation, AnimationLike, Asset, AssetContainer, BehaviorType, CollisionEvent, CollisionLayer, Context, Guid, MediaCommand, MediaInstance, PerformanceStats, SetMediaStateOptions, TriggerEvent, User, UserLike } from '..';
 import { ExportedPromise, Payloads, Protocols } from '../internal';
 import { PhysicsBridgeTransformUpdate, PhysicsUploadServerTransformsUpdate } from '../actor/physics/physicsBridge';

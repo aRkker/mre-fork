@@ -2,6 +2,8 @@
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
  */
+
+/* eslint-disable no-console */
 import {
 	ActionEvent,
 	Actor,
@@ -358,6 +360,8 @@ export class ContextInternal {
 	public update() {
 		// Early out if no state changes occurred.
 		if (this.generation === this.prevGeneration) {
+			console.log('QUITTING THE UPDATE');
+
 			return;
 		}
 
