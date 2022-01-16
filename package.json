@@ -1,45 +1,45 @@
 {
-  "name": "node",
-  "private": true,
-  "version": "0.1.0",
-  "description": "The Mixed Reality Extension SDK enables developers to build 3D world extensions for AltspaceVR, using Node.JS.",
-  "main": "index.js",
-  "author": "Microsoft Corporation",
-  "license": "MIT",
-  "keywords": [
-    "mixed reality",
-    "virtual reality",
-    "vr",
-    "sdk",
-    "altspacevr",
-    "gltf",
-    "node"
-  ],
-  "engines": {
-    "node": ">=10.13.0",
-    "npm": ">=6.4.1"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "bootstrap": "lerna bootstrap",
-    "postinstall": "npm run bootstrap",
-    "clean": "tsc --build --clean",
-    "build": "tsc --build && eslint --ext .ts packages",
-    "build-only": "tsc --build",
-    "build-docs": "lerna run build-docs",
-    "publish": "lerna publish",
-    "start": "node ./packages/functional-tests/",
-    "parseLogs": "node ./packages/sdk/built/utils/parseNetworkLogs.js"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.6.1",
-    "@typescript-eslint/parser": "^2.6.1",
-    "eslint": "^6.6.0",
-    "eslint-plugin-header": "^3.0.0",
-    "lerna": "^3.22.1",
-    "typescript": "^3.7.2"
-  },
-  "dependencies": {
-    "tslint": "^5.20.1"
-  }
+	"name": "node",
+	"private": true,
+	"version": "0.1.1",
+	"description": "The Mixed Reality Extension SDK enables developers to build 3D world extensions for AltspaceVR, using Node.JS.",
+	"main": "index.js",
+	"author": "aRkker lol",
+	"license": "MIT",
+	"keywords": [
+		"mixed reality",
+		"virtual reality",
+		"vr",
+		"sdk",
+		"altspacevr",
+		"gltf",
+		"node"
+	],
+	"engines": {
+		"node": ">=10.13.0",
+		"npm": ">=6.4.1"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"bootstrap": "lerna bootstrap",
+		"postinstall": "npm run bootstrap",
+		"clean": "tsc --build --clean",
+		"build": "tsc --build && eslint --ext .ts packages",
+		"build-only": "tsc --build",
+		"build-docs": "lerna run build-docs",
+		"publish": "lerna publish",
+		"start": "node ./packages/functional-tests/",
+		"parseLogs": "node ./packages/sdk/built/utils/parseNetworkLogs.js"
+	},
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^2.6.1",
+		"@typescript-eslint/parser": "^2.6.1",
+		"eslint": "^6.6.0",
+		"eslint-plugin-header": "^3.0.0",
+		"lerna": "^3.22.1",
+		"typescript": "^3.7.2"
+	},
+	"dependencies": {
+		"tslint": "^5.20.1"
+	}
 }
