@@ -4,8 +4,11 @@
  */
 
 import * as MRE from '@microsoft/mixed-reality-extension-sdk';
-
 import { Test } from '../test';
+
+const options = {
+	font: Object.keys(MRE.TextFontFamily) as MRE.TextFontFamily[],
+};
 
 /** Defines an animation control field */
 interface ControlDefinition {
@@ -19,117 +22,112 @@ interface ControlDefinition {
 	labelActor?: MRE.Actor;
 }
 
-export default class SoundSyncTest extends Test {
-	public expectedResultDescription = "Tests Prerecorded sound playback synchronization";
-
+// };
+/**
+ * Test the text api functionality
+ */
+export default class TextTest extends Test {
+	public expectedResultDescription = "Unicode Block and Font Test";
+	public interval: NodeJS.Timeout;
 	private assets: MRE.AssetContainer;
 
+	private textActors: MRE.Actor[] = [];
+
+	private textBlocks: any[] = [];
+	private currentList = 0;
+
+	private cycleOptions(): void {
+		for(const text of this.textActors) {
+			text.text.contents = this.textBlocks[this.currentList].displayString;
+		}
+	}
+	
 	public cleanup() {
+		clearInterval(this.interval);
 		this.assets.unload();
 	}
 
-	private CreateSoundInstance() {
-		if (this.currentInstance) {
-			this.currentInstance.stop();
+	public createDisplayString(x: any) {
+		const unicodeChars: number[] = [];
+		for(let i = x.blockStart; i < x.blockEnd; ++i){
+			unicodeChars.push(i);
+
+			//Insert newline every 60 characters
+			if((i - x.blockStart) % 60 === 0) {
+				unicodeChars.push('\n'.charCodeAt(0));
+			}
 		}
-		this.currentInstance = this.parentActor.startSound(this.soundAssets[this.currentInstanceIndex].id,
-			{
-				volume: this.volume,
-				looping: this.looping,
-				pitch: this.pitch,
-			});
+		x.displayString = String.fromCharCode(...unicodeChars);
 	}
-
-
-	parentActor: MRE.Actor;
-	soundAssets: MRE.Sound[];
-	currentInstance: MRE.MediaInstance;
-	currentInstanceIndex = 0;
-	isPlaying = true;
-
-
-	volume = .2;
-	looping = true;
-	pitch = 0;
-	time = 0;
 
 	public async run(root: MRE.Actor): Promise<boolean> {
 		this.assets = new MRE.AssetContainer(this.app.context);
 
-		this.parentActor = MRE.Actor.Create(this.app.context, {
-			actor: {
-				parentId: root.id,
-				name: 'video',
-				transform: {
-					local: {
-						position: { x: 0, y: 1, z: 0 },
-						scale: { x: 2, y: 2, z: 2 }
-					}
-				},
-			}
-		});
+		this.textBlocks.push(
+			{blockStart: 0x20, blockEnd:0x07E, name:"Latin Basic"},
+			{blockStart: 0xA0, blockEnd: 0xFF, name:"Latin Suppliment"},
+			{blockStart: 0x100, blockEnd:0x017F, name:"Latin Extended - A"},
+			{blockStart: 0x3060, blockEnd:0x309F, name:"Japanese Hiragana/Katakana"},
+			{blockStart: 0x4E00, blockEnd:0x4E7F, name:"Chinese/Japanese/Korean Ideographs"});		
 
-		const soundAsset1 = this.assets.createSound(
-			'music',
-			{ uri: 'Counting.wav' }
-		);
+		this.textBlocks.forEach((v,i,a) =>{ this.createDisplayString(v); });
 
-		//Todo: More video sources and types for when support is patched in.
-		// Non youtube?
 
-		this.soundAssets = [soundAsset1];
-
-		await Promise.all([this.parentActor.created()]);
-
-		this.CreateSoundInstance();
+		const position = new MRE.Vector3(0,2.5,-.3);
+		for(const font of options.font) {
+			const newActor = this.createTemplate(root, this.textBlocks[0].displayString);
+			newActor.transform.local.position.copy(position);
+			newActor.text.font = font;
+			this.textActors.push( newActor );
+			position.addInPlace(MRE.Vector3.Down().scale(.5))
+		}
 
 		const controls: ControlDefinition[] = [
 			{
-				label: "Playing", realtime: true, action: incr => {
-					if (incr !== 0) {
-						if (!this.isPlaying) {
-							this.currentInstance.resume();
-							this.isPlaying = true;
-						} else {
-							this.currentInstance.pause();
-							this.isPlaying = false;
+				label: "Unicode Block", action: incr => {
+					if (incr > 0 ) {
+						this.currentList++;
+						if(this.currentList >= this.textBlocks.length) {
+							this.currentList = 0;
 						}
-					}
-					return this.isPlaying.toString();
-				}
-			},
-			{
-				label: "Loop", action: incr => {
-					this.looping = !this.looping;
-					this.currentInstance.setState({looping: this.looping});
-					return this.looping.toString();
-				}
-			},
-			{
-				label: "Volume", action: incr => {
-					if (incr > 0) {
-						this.volume = this.volume >= 1.0 ? 1.0 : this.volume + .1;
+						this.cycleOptions();
 					} else if (incr < 0) {
-						this.volume = this.volume <= 0.0 ? 0.0 : this.volume - .1;
+						this.currentList--;
+						if(this.currentList < 0) {
+							this.currentList = this.textBlocks.length - 1;
+						}
+						this.cycleOptions();
 					}
-					this.currentInstance.setState({ volume: this.volume });
-					return Math.floor(this.volume * 100) + "%";
+					return this.textBlocks[this.currentList].name.toString();
 				}
 			}
-			//Todo: Multiple sounds
+		]
 
-
-		];
 		this.createControls(controls, MRE.Actor.Create(this.app.context, {
 			actor: {
 				name: 'controlsParent',
 				parentId: root.id,
-				transform: { local: { position: { x: 0.6, y: 1, z: -1 } } }
+				transform: { local: { position: { x: -1, y: .2, z: -1 } } }
 			}
 		}));
 
 		await this.stoppedAsync();
 		return true;
+	}
+
+	private createTemplate(root: MRE.Actor, text: string): MRE.Actor {
+		return MRE.Actor.Create(this.app.context, {
+			actor: {
+				name: text.replace('\n', ' '),
+				parentId: root.id,
+				text: {
+					contents: text,
+					height: 0.15,
+					anchor: MRE.TextAnchorLocation.MiddleCenter
+					
+				},
+			}
+		});
 	}
 
 	private createControls(controls: ControlDefinition[], parent: MRE.Actor) {

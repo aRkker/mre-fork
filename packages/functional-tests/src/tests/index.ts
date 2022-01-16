@@ -8,7 +8,6 @@ import ActorAttachmentTest from './actor-attachment-test';
 import ActorSpamTest from './actor-spam-test';
 import AltspaceVRLibraryTest from './altspacevr-library-test';
 import AltspaceVRUserFilterTest from './altspacevr-user-filter-test';
-import AltspaceVRVideoTest from './altspacevr-video-test';
 import AnimationBlendTest from './animation-blend-test';
 import AnimationDynamicTest from './animation-dynamic-test';
 import AnimationRelativeTest from './animation-relative-test';
@@ -24,6 +23,7 @@ import ButtonTargetingTest from './button-targeting-test';
 import ClockSyncTest from './clock-sync-test';
 import CollisionLayerTest from './collision-layer-test';
 import FailureTest from './failure-test';
+import FontTest from './font-test';
 import GltfActorSyncTest from './gltf-actor-sync-test';
 import GltfConcurrencyTest from './gltf-concurrency-test';
 import GltfGenTest from './gltf-gen-test';
@@ -69,7 +69,6 @@ export const Factories = {
 	'actor-spam': (...args) => new ActorSpamTest(...args),
 	'altspacevr-library': (...args) => new AltspaceVRLibraryTest(...args),
 	'altspacevr-user-filter': (...args) => new AltspaceVRUserFilterTest(...args),
-	'altspacevr-video': (...args) => new AltspaceVRVideoTest(...args),
 	'animation-blend': (...args) => new AnimationBlendTest(...args),
 	'animation-dynamic': (...args) => new AnimationDynamicTest(...args),
 	'animation-relative': (...args) => new AnimationRelativeTest(...args),
@@ -85,6 +84,7 @@ export const Factories = {
 	'clock-sync': (...args) => new ClockSyncTest(...args),
 	'collision-layer': (...args) => new CollisionLayerTest(...args),
 	'failure': (...args) => new FailureTest(...args),
+	'font': (...args) => new FontTest(...args),
 	'gltf-actor-sync': (...args) => new GltfActorSyncTest(...args),
 	'gltf-concurrency': (...args) => new GltfConcurrencyTest(...args),
 	'gltf-gen': (...args) => new GltfGenTest(...args),
