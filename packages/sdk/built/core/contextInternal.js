@@ -218,8 +218,9 @@ class ContextInternal {
         }
     }
     start() {
+        var _a;
         if (!this.interval) {
-            this.interval = setInterval(() => this.update(), 0);
+            this.interval = setInterval(() => this.update(), (_a = Number.parseInt(process.env.MRE_UPDATE_FREQUENCY), (_a !== null && _a !== void 0 ? _a : 0)));
             this.context.emitter.emit('started');
         }
     }
@@ -244,7 +245,7 @@ class ContextInternal {
     update() {
         // Early out if no state changes occurred.
         if (this.generation === this.prevGeneration) {
-            console.log('QUITTING THE UPDATE');
+            // console.log('QUITTING THE UPDATE');
             return;
         }
         this.prevGeneration = this.generation;

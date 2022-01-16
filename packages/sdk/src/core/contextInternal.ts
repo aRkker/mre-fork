@@ -332,7 +332,7 @@ export class ContextInternal {
 
 	public start() {
 		if (!this.interval) {
-			this.interval = setInterval(() => this.update(), 0);
+			this.interval = setInterval(() => this.update(), Number.parseInt(process.env.MRE_UPDATE_FREQUENCY) ?? 0);
 			this.context.emitter.emit('started');
 		}
 	}
@@ -360,7 +360,7 @@ export class ContextInternal {
 	public update() {
 		// Early out if no state changes occurred.
 		if (this.generation === this.prevGeneration) {
-			console.log('QUITTING THE UPDATE');
+			// console.log('QUITTING THE UPDATE');
 
 			return;
 		}
