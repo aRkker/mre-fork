@@ -767,6 +767,11 @@ export const Rules: { [id in Payloads.PayloadType]: Rule } = {
 				message: Message<Payloads.PerformAction>
 			) => {
 				// Store the client id of the client that is performing the grab.
+
+				if (process.env.PROCESS_PERFORM_ACTIONS === '0'
+					&& message.payload.actionName.toLowerCase() !== 'grab') {
+					return;
+				}
 				const payload = message.payload;
 				const syncActor = session.actorSet.get(payload.targetId);
 				if (syncActor && payload.actionName.toLowerCase() === 'grab' &&
