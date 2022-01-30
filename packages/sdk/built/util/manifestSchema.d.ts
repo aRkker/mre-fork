@@ -1,6 +1,7 @@
 declare const _exports: {
     "$schema": string;
     "type": string;
+    "additionalProperties": boolean;
     "properties": {
         "name": {
             "type": string;

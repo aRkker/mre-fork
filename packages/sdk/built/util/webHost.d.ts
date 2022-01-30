@@ -11,11 +11,15 @@ import { Adapter } from '../internal';
 export declare class WebHost {
     private _adapter;
     private _baseDir;
-    private _baseUrl;
     private manifest;
+    private _ready;
     get adapter(): Adapter;
     get baseDir(): string;
-    get baseUrl(): string;
+    /**
+     * A promise that resolves when the HTTP server is listening.
+     * Get the server reference from `webHost.adapter.server`.
+     */
+    get ready(): Promise<void>;
     private bufferMap;
     constructor(options?: {
         baseDir?: string;

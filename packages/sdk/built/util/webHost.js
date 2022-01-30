@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const url_1 = require("url");
 const Restify = __importStar(require("restify"));
 const restify_errors_1 = require("restify-errors");
 const etag_1 = __importDefault(require("etag"));
@@ -57,22 +56,15 @@ class WebHost {
         __1.log.info('app', `Node: ${process.version}`);
         __1.log.info('app', `${pjson.name}: v${pjson.version}`);
         this._baseDir = options.baseDir || process.env.BASE_DIR;
-        this._baseUrl = options.baseUrl || process.env.BASE_URL;
-        // Azure defines WEBSITE_HOSTNAME.
-        if (!this._baseUrl && process.env.WEBSITE_HOSTNAME) {
-            this._baseUrl = `https://${process.env.WEBSITE_HOSTNAME}`;
-        }
         // Resolve the port number. Heroku defines a PORT environment var (remapped from 80).
         const port = options.port || process.env.PORT || 3901;
         // Create a Multi-peer adapter
         this._adapter = new __1.MultipeerAdapter({ port });
         // Start listening for new app connections from a multi-peer client.
-        this.validateManifest()
-            .then(() => this._adapter.listen())
-            .then(server => {
-            this._baseUrl = this._baseUrl || server.url.replace(/\[::\]/u, '127.0.0.1');
+        const serverP = this.validateManifest().then(() => this._adapter.listen());
+        this._ready = serverP.then();
+        serverP.then(server => {
             __1.log.info('app', `${server.name} listening on ${JSON.stringify(server.address())}`);
-            __1.log.info('app', `baseUrl: ${this.baseUrl}`);
             __1.log.info('app', `baseDir: ${this.baseDir}`);
             // check if a procedural manifest is needed, and serve if so
             this.serveManifestIfNeeded(server, options.permissions, options.optionalPermissions);
@@ -87,7 +79,11 @@ class WebHost {
     }
     get adapter() { return this._adapter; }
     get baseDir() { return this._baseDir; }
-    get baseUrl() { return this._baseUrl; }
+    /**
+     * A promise that resolves when the HTTP server is listening.
+     * Get the server reference from `webHost.adapter.server`.
+     */
+    get ready() { return this._ready; }
     async validateManifest() {
         const manifestPath = path_1.resolve(this.baseDir, './manifest.json');
         try {
@@ -145,7 +141,7 @@ class WebHost {
             etag: etag_1.default(blob),
             contentType
         };
-        return url_1.resolve(this._baseUrl, `buffers/${filename}`);
+        return `buffers/${filename}`;
     }
 }
 exports.WebHost = WebHost;
