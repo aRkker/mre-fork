@@ -802,11 +802,15 @@ export const Rules: { [id in Payloads.PayloadType]: Rule } = {
 				message: Message<Payloads.PhysicsBridgeUpdate>,
 				promise: ExportedPromise
 			) => {
-
+				if (process.env.PROCESS_PHYSICS_BRIDGE_SHIT === '0') {
+					return;
+				}
 				return message;
 			},
 			shouldSendToUser: (message: Message<Payloads.PhysicsBridgeUpdate>, userId, session, client) => {
-
+				if (process.env.PROCESS_PHYSICS_BRIDGE_SHIT === '0') {
+					return false;
+				}
 				return true;
 			}
 		},
@@ -825,6 +829,9 @@ export const Rules: { [id in Payloads.PayloadType]: Rule } = {
 				message: Message<Payloads.PhysicsBridgeUpdate>
 			) => {
 
+				if (process.env.PROCESS_PHYSICS_BRIDGE_SHIT === '0') {
+					return;
+				}
 				session.sendPayloadToClients(message.payload, (value) => value.id !== client.id);
 
 				return message;

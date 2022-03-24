@@ -406,12 +406,21 @@ exports.Rules = {
             during: 'queue',
             after: 'allow'
         }, client: Object.assign(Object.assign({}, exports.DefaultRule.client), { beforeQueueMessageForClient: (session, client, message, promise) => {
+                if (process.env.PROCESS_PHYSICS_BRIDGE_SHIT === '0') {
+                    return;
+                }
                 return message;
             }, shouldSendToUser: (message, userId, session, client) => {
+                if (process.env.PROCESS_PHYSICS_BRIDGE_SHIT === '0') {
+                    return false;
+                }
                 return true;
             } }), session: Object.assign(Object.assign({}, exports.DefaultRule.session), { beforeReceiveFromApp: (session, message) => {
                 return message;
             }, beforeReceiveFromClient: (session, client, message) => {
+                if (process.env.PROCESS_PHYSICS_BRIDGE_SHIT === '0') {
+                    return;
+                }
                 session.sendPayloadToClients(message.payload, (value) => value.id !== client.id);
                 return message;
             } }) }),
