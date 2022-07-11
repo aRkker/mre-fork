@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ColliderType = void 0;
 /**
  * The type of the collider.
  */

@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ContextInternal = void 0;
 /* eslint-disable no-console */
 const __1 = require("..");
 const internal_1 = require("../internal");
@@ -220,7 +221,7 @@ class ContextInternal {
     start() {
         var _a;
         if (!this.interval) {
-            this.interval = setInterval(() => this.update(), (_a = Number.parseInt(process.env.MRE_UPDATE_FREQUENCY), (_a !== null && _a !== void 0 ? _a : 0)));
+            this.interval = setInterval(() => this.update(), (_a = Number.parseInt(process.env.MRE_UPDATE_FREQUENCY)) !== null && _a !== void 0 ? _a : 0);
             this.context.emitter.emit('started');
         }
     }
@@ -350,10 +351,18 @@ class ContextInternal {
         if (!transforms) {
             return;
         }
+        // @ts-ignore
+        if (transforms.filter(a => a !== undefined).length === 0) {
+            return;
+        }
         this.context.emitter.emit('physicsbridge-transforms-update', transforms);
     }
     updatePhysicsServerTransformsUpload(transforms) {
         if (!transforms) {
+            return;
+        }
+        // @ts-ignore
+        if (transforms.filter(a => a !== undefined).length === 0) {
             return;
         }
         this.context.emitter.emit('physicsbridge-server-transforms-upload', transforms);

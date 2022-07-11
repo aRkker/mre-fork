@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Appearance = void 0;
 const __1 = require("..");
 class Appearance {
     constructor(actor) {
@@ -84,8 +85,8 @@ class Appearance {
         return (_a = this.actor.context.internal.lookupAsset(this._materialId)) === null || _a === void 0 ? void 0 : _a.material;
     }
     set material(value) {
-        var _a, _b;
-        this.materialId = (_b = (_a = value) === null || _a === void 0 ? void 0 : _a.id, (_b !== null && _b !== void 0 ? _b : __1.ZeroGuid));
+        var _a;
+        this.materialId = (_a = value === null || value === void 0 ? void 0 : value.id) !== null && _a !== void 0 ? _a : __1.ZeroGuid;
     }
     /** @inheritdoc */
     get materialId() { return this._materialId; }
@@ -113,8 +114,8 @@ class Appearance {
         return (_a = this.actor.context.internal.lookupAsset(this._meshId)) === null || _a === void 0 ? void 0 : _a.mesh;
     }
     set mesh(value) {
-        var _a, _b;
-        this.meshId = (_b = (_a = value) === null || _a === void 0 ? void 0 : _a.id, (_b !== null && _b !== void 0 ? _b : __1.ZeroGuid));
+        var _a;
+        this.meshId = (_a = value === null || value === void 0 ? void 0 : value.id) !== null && _a !== void 0 ? _a : __1.ZeroGuid;
     }
     /** @inheritdoc */
     get meshId() { return this._meshId; }

@@ -44,7 +44,7 @@ export declare class Actor implements ActorLike, Patchable<ActorLike> {
     get internal(): ActorInternal;
     private _emitter;
     /** @hidden */
-    get emitter(): events.EventEmitter;
+    get emitter(): events;
     private _name;
     private _tag;
     private _exclusiveToUser;

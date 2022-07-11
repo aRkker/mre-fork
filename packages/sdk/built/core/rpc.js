@@ -5,6 +5,7 @@
  */
 /* eslint-disable max-classes-per-file */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RPCChannels = exports.RPC = void 0;
 /**
  * RPC interface. Able to send and receive RPC calls.
  */

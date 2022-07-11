@@ -21,6 +21,6 @@ export declare class ClientExecution extends Protocol implements Middleware {
     startListening(): void;
     stopListening(): void;
     private setHeartbeatTimer;
-    beforeRecv: (message: Message<import("../../../payloads").Payload>) => Message<import("../../../payloads").Payload>;
+    beforeRecv: (message: Message) => Message;
 }
 //# sourceMappingURL=clientExecution.d.ts.map

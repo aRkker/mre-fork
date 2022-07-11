@@ -7,6 +7,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Rules = exports.MissingRule = exports.DefaultRule = void 0;
 const deepmerge_1 = __importDefault(require("deepmerge"));
 const internal_1 = require("../../../internal");
 const __1 = require("../../..");
@@ -259,7 +260,7 @@ exports.Rules = {
     'assets-loaded': Object.assign(Object.assign({}, ClientOnlyRule), { session: Object.assign(Object.assign({}, ClientOnlyRule.session), { beforeReceiveFromClient: (session, client, message) => {
                 var _a;
                 if (client.authoritative) {
-                    for (const asset of (_a = message.payload.assets, (_a !== null && _a !== void 0 ? _a : []))) {
+                    for (const asset of (_a = message.payload.assets) !== null && _a !== void 0 ? _a : []) {
                         session.cacheAssetCreation(asset.id, message.replyToId, (asset.sound && asset.sound.duration) ||
                             (asset.videoStream && asset.videoStream.duration));
                     }
@@ -358,10 +359,10 @@ exports.Rules = {
     'multi-operation-result': ClientOnlyRule,
     // ========================================================================
     'object-spawned': Object.assign(Object.assign({}, ClientOnlyRule), { session: Object.assign(Object.assign({}, exports.DefaultRule.session), { beforeReceiveFromClient: (session, client, message) => {
-                var _a, _b;
+                var _a;
                 // Check that this is the authoritative client
                 const actors = message.payload.actors;
-                const exclusiveUser = ((_a = actors) === null || _a === void 0 ? void 0 : _a.length) > 0 && session.actorSet.has((_b = actors[0]) === null || _b === void 0 ? void 0 : _b.id) ?
+                const exclusiveUser = (actors === null || actors === void 0 ? void 0 : actors.length) > 0 && session.actorSet.has((_a = actors[0]) === null || _a === void 0 ? void 0 : _a.id) ?
                     session.actorSet.get(actors[0].id).exclusiveToUser :
                     undefined;
                 if (client.authoritative || client.userId && client.userId === exclusiveUser) {

@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.validateJsonFieldName = void 0;
 /**
  * @hidden
  * Verifies that `key` isn't an invalid key name. Useful for detecting when we're leaking private

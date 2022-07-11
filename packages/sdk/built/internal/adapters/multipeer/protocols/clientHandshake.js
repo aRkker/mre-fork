@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ClientHandshake = void 0;
 const __1 = require("../../..");
 // break import cycle
 const protocols_1 = require("../../../protocols");

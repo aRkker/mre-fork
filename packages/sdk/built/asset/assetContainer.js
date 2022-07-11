@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AssetContainer = void 0;
 const __1 = require("..");
 const internal_1 = require("../internal");
 /**

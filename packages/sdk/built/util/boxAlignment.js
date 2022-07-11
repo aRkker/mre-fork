@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.InvertBoxAlignment = exports.BoxAlignment = void 0;
 /** Describes a relative position in a [[GridLayout]]. */
 var BoxAlignment;
 (function (BoxAlignment) {

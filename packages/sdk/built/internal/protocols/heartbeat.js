@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Heartbeat = void 0;
 const MS_PER_S = 1e3;
 const MS_PER_NS = 1e-6;
 /**

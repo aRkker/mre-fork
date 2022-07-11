@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Sync = void 0;
 // break import cycle
 const protocol_1 = require("./protocol");
 const serverPreprocessing_1 = require("./serverPreprocessing");

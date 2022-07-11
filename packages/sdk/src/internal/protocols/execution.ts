@@ -137,9 +137,13 @@ export class Execution extends Protocol {
 
 	/** @private */
 	public 'recv-trigger-event-raised' = (payload: Payloads.TriggerEventRaised) => {
+
 		this.emit('protocol.trigger-event-raised', {
+			// @ts-ignore
 			colliderOwnerId: payload.actorId,
+			// @ts-ignore
 			eventType: payload.eventType,
+			// @ts-ignore
 			otherColliderOwnerId: payload.otherActorId
 		} as TriggerEvent);
 	};

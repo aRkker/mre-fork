@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Sound = void 0;
 const __1 = require("..");
 const assetInternal_1 = require("./assetInternal");
 // break import cycle

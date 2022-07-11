@@ -28,7 +28,7 @@ export declare type AdapterOptions = {
  */
 export declare abstract class Adapter {
     protected _options: AdapterOptions;
-    protected emitter: events.EventEmitter;
+    protected emitter: events;
     protected get options(): AdapterOptions;
     get server(): Restify.Server;
     set server(value: Restify.Server);

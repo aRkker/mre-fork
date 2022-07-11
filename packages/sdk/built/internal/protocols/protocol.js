@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Protocol = void 0;
 const events_1 = require("events");
 const __1 = require("../..");
 const internal_1 = require("../../internal");
@@ -64,7 +65,7 @@ class Protocol extends events_1.EventEmitter {
     }
     sendMessage(message, promise, timeoutSeconds, serializedMessage) {
         var _a;
-        message.id = (_a = message.id, (_a !== null && _a !== void 0 ? _a : __1.newGuid()));
+        message.id = (_a = message.id) !== null && _a !== void 0 ? _a : __1.newGuid();
         // Run message through all the middlewares
         const middlewares = this.middlewares.slice();
         for (const middleware of middlewares) {
@@ -170,21 +171,21 @@ class Protocol extends events_1.EventEmitter {
         }
     }
     rejectPromiseForMessage(messageId, reason) {
-        var _a, _b;
+        var _a;
         const queuedPromise = this.promises.get(messageId);
-        if ((_b = (_a = queuedPromise) === null || _a === void 0 ? void 0 : _a.promise) === null || _b === void 0 ? void 0 : _b.reject) {
+        if ((_a = queuedPromise === null || queuedPromise === void 0 ? void 0 : queuedPromise.promise) === null || _a === void 0 ? void 0 : _a.reject) {
             try {
                 clearTimeout(queuedPromise.timeout);
             }
-            catch (_c) { }
+            catch (_b) { }
             try {
                 this.promises.delete(messageId);
             }
-            catch (_d) { }
+            catch (_c) { }
             try {
                 queuedPromise.promise.reject(reason);
             }
-            catch (_e) { }
+            catch (_d) { }
         }
     }
     missingPromiseForReplyMessage(message) {

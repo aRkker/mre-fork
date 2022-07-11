@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SessionSync = void 0;
 // break import cycle
 const protocols_1 = require("../../../protocols");
 /**

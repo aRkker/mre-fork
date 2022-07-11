@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Asset = void 0;
 const __1 = require("..");
 /** The base class for all asset types. */
 class Asset {

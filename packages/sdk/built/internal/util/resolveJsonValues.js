@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.resolveJsonValues = void 0;
 /**
  * @hidden
  * Recursively look for values with a `toJSON()` method. If found,

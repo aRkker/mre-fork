@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserFilter = void 0;
 /** Base class for classes that filter out users from MRE awareness */
 class UserFilter {
     /**

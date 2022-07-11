@@ -9,6 +9,6 @@ import { ExportedPromise, Message, Protocols } from '../../internal';
 export declare class ServerPreprocessing implements Protocols.Middleware {
     constructor();
     /** @private */
-    beforeSend: (message: Message<import("../payloads").Payload>, promise?: ExportedPromise) => Message<import("../payloads").Payload>;
+    beforeSend: (message: Message, promise?: ExportedPromise) => Message;
 }
 //# sourceMappingURL=serverPreprocessing.d.ts.map

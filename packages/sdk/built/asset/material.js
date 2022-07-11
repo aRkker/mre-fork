@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Material = exports.AlphaMode = void 0;
 const __1 = require("..");
 const internal_1 = require("../internal");
 const assetInternal_1 = require("./assetInternal");
@@ -118,8 +119,8 @@ class Material extends asset_1.Asset {
         return (_a = this.container.context.internal.lookupAsset(this._mainTextureId)) === null || _a === void 0 ? void 0 : _a.texture;
     }
     set mainTexture(value) {
-        var _a, _b;
-        this.mainTextureId = (_b = (_a = value) === null || _a === void 0 ? void 0 : _a.id, (_b !== null && _b !== void 0 ? _b : __1.ZeroGuid));
+        var _a;
+        this.mainTextureId = (_a = value === null || value === void 0 ? void 0 : value.id) !== null && _a !== void 0 ? _a : __1.ZeroGuid;
     }
     /** @inheritdoc */
     get mainTextureId() { return this._mainTextureId; }
@@ -163,8 +164,8 @@ class Material extends asset_1.Asset {
         return (_a = this.container.context.internal.lookupAsset(this._emissiveTextureId)) === null || _a === void 0 ? void 0 : _a.texture;
     }
     set emissiveTexture(value) {
-        var _a, _b;
-        this.emissiveTextureId = (_b = (_a = value) === null || _a === void 0 ? void 0 : _a.id, (_b !== null && _b !== void 0 ? _b : __1.ZeroGuid));
+        var _a;
+        this.emissiveTextureId = (_a = value === null || value === void 0 ? void 0 : value.id) !== null && _a !== void 0 ? _a : __1.ZeroGuid;
     }
     /** @inheritdoc */
     get emissiveTextureId() { return this._emissiveTextureId; }

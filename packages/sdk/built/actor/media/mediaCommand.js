@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.MediaCommand = void 0;
 /**
  * The media commands used to control the media instance.
  */

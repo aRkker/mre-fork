@@ -5,6 +5,7 @@
  */
 /* eslint-disable max-classes-per-file */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ActorPath = exports.TargetPath = void 0;
 // break import cycle
 const animatible_1 = require("./animatible");
 /** A reference to a property on an object. Do not create these directly, but instead call [[ActorPath]]. */

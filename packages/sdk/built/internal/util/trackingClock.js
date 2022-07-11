@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TrackingClock = void 0;
 /**
  * @hidden
  * Clock to estimate the current server time from a known sample.

@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ExponentialMovingAverage = void 0;
 /**
  * @hidden
  * Computes an Exponentially Weighted Moving Average (EWMA).

@@ -473,11 +473,22 @@ export class ContextInternal {
 
 	public updatePhysicsBridgeTransforms(transforms: Partial<PhysicsBridgeTransformUpdate>) {
 		if (!transforms) { return; }
+
+		// @ts-ignore
+		if (transforms.filter(a => a !== undefined).length === 0) {
+			return;
+		}
+
 		this.context.emitter.emit('physicsbridge-transforms-update', transforms);
 	}
 
 	public updatePhysicsServerTransformsUpload(transforms: Partial<PhysicsUploadServerTransformsUpdate>) {
 		if (!transforms) { return; }
+
+		// @ts-ignore
+		if (transforms.filter(a => a !== undefined).length === 0) {
+			return;
+		}
 		this.context.emitter.emit('physicsbridge-server-transforms-upload', transforms);
 	}
 

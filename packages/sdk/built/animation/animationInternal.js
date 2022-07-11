@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AnimationInternal = void 0;
 /** @hidden */
 class AnimationInternal {
     constructor(animation) {

@@ -5,6 +5,7 @@
  */
 /* eslint-disable max-classes-per-file */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ScaledTransform = exports.Transform = void 0;
 const __1 = require("..");
 class Transform {
     /**

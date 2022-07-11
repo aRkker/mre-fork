@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Matrix = void 0;
 const _1 = require(".");
 const tmp_1 = require("./tmp");
 /**

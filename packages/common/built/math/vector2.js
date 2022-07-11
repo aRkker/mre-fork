@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Vector2 = void 0;
 const _1 = require(".");
 /**
  * Class representing a vector containing 2 coordinates

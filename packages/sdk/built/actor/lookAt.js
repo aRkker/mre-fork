@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.LookAt = exports.LookAtMode = void 0;
 const __1 = require("..");
 /**
  * Describes the ways in which an actor can face (point its local +Z axis toward) and track another object in the scene

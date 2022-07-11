@@ -161,6 +161,7 @@ export class MultipeerAdapter extends Adapter {
 		});
 	}
 
+	// @ts-ignore
 	private async joinClientToSession(client: Client, sessionId: string, params: QueryString.OutputParams) {
 		try {
 			// Handshake with the client.

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PlanarGridLayout = void 0;
 /*!
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
@@ -69,7 +70,7 @@ class PlanarGridLayout {
     getColumnWidths() {
         return this.contents.reduce((arr, c) => {
             var _a;
-            arr[c.column] = Math.max((_a = arr[c.column], (_a !== null && _a !== void 0 ? _a : 0)), c.width);
+            arr[c.column] = Math.max((_a = arr[c.column]) !== null && _a !== void 0 ? _a : 0, c.width);
             return arr;
         }, []);
     }
@@ -77,7 +78,7 @@ class PlanarGridLayout {
     getRowHeights() {
         return this.contents.reduce((arr, c) => {
             var _a;
-            arr[c.row] = Math.max((_a = arr[c.row], (_a !== null && _a !== void 0 ? _a : 0)), c.height);
+            arr[c.row] = Math.max((_a = arr[c.row]) !== null && _a !== void 0 ? _a : 0, c.height);
             return arr;
         }, []);
     }
@@ -102,7 +103,7 @@ class PlanarGridLayout {
             .negate();
         for (const cell of this.contents) {
             const cellPosition = new __1.Vector3(colWidths.slice(0, cell.column).reduce(sumFn, 0), -rowHeights.slice(0, cell.row).reduce(sumFn, 0), cell.contents.transform.local.position.z);
-            const cellAlign = PlanarGridLayout.getOffsetFromAlignment((_a = cell.alignment, (_a !== null && _a !== void 0 ? _a : this.defaultCellAlignment)), colWidths[cell.column], rowHeights[cell.row]);
+            const cellAlign = PlanarGridLayout.getOffsetFromAlignment((_a = cell.alignment) !== null && _a !== void 0 ? _a : this.defaultCellAlignment, colWidths[cell.column], rowHeights[cell.row]);
             const destination = gridAlign.add(cellPosition).add(cellAlign);
             if (animateDuration > 0) {
                 __1.Animation.AnimateTo(cell.contents.context, cell.contents, {

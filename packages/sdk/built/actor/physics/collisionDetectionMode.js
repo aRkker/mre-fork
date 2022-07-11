@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.CollisionDetectionMode = void 0;
 /**
  * The collision detection mode of a rigid body.
  */

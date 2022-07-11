@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.RigidBody = void 0;
 const __1 = require("../..");
 /**
  * Class that represents a rigid body found on an actor.

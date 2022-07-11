@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Collider = exports.CollisionLayer = void 0;
 const colliderInternal_1 = require("./colliderInternal");
 /**
  * Controls what the assigned actors will collide with.

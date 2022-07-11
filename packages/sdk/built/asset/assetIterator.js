@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AssetContainerIterable = exports.AssetContainerIterator = void 0;
 /** @hidden */
 class AssetContainerIterator {
     constructor(containers) {

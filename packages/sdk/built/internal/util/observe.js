@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.unobserve = exports.observe = void 0;
 function observeLeafProperties(target, path, notifyChanged, triggerNotificationsNow) {
     const names = Object.getOwnPropertyNames(target)
         .filter(n => !target.$DoNotObserve || !target.$DoNotObserve.includes(n));

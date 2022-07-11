@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Orientation = void 0;
 /**
  * Defines potential orientation for back face culling
  */

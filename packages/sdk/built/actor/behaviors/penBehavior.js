@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PenBehavior = void 0;
 const _1 = require(".");
 /**
  * @hidden Pen behavior class containing the target behavior actions.

@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.MediaInstance = void 0;
 const __1 = require("../..");
 /**
  * A MediaInstance represents an instance managing the playback of a sound or video stream,

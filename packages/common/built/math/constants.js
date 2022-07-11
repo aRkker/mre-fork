@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DegreesToRadians = exports.RadiansToDegrees = exports.Epsilon = exports.ToLinearSpace = exports.ToGammaSpace = void 0;
 /**
  * Constant used to convert a value to gamma space
  * @ignorenaming

@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Text = exports.TextFontFamily = exports.TextJustify = exports.TextAnchorLocation = void 0;
 const __1 = require("..");
 var TextAnchorLocation;
 (function (TextAnchorLocation) {

@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TargetBehavior = void 0;
 const __1 = require("../..");
 // break import cycle
 const behavior_1 = require("./behavior");

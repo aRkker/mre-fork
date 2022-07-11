@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.VideoStream = void 0;
 const assetInternal_1 = require("./assetInternal");
 // break import cycle
 const asset_1 = require("./asset");

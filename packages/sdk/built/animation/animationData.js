@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AnimationData = void 0;
 /*!
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
@@ -80,10 +81,10 @@ class AnimationData extends asset_1.Asset {
     }
     /** @hidden */
     copy(from) {
-        var _a, _b, _c;
+        var _a, _b;
         super.copy(from);
-        if (!this._tracks && ((_b = (_a = from) === null || _a === void 0 ? void 0 : _a.animationData) === null || _b === void 0 ? void 0 : _b.tracks)) {
-            this._tracks = [...(_c = from.animationData) === null || _c === void 0 ? void 0 : _c.tracks];
+        if (!this._tracks && ((_a = from === null || from === void 0 ? void 0 : from.animationData) === null || _a === void 0 ? void 0 : _a.tracks)) {
+            this._tracks = [...(_b = from.animationData) === null || _b === void 0 ? void 0 : _b.tracks];
         }
         return this;
     }

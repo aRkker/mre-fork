@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.readPath = void 0;
 const internal_1 = require("../../internal");
 /**
  * @hidden

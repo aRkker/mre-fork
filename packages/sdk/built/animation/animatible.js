@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getAnimatibleName = exports.AnimatibleName = void 0;
 const __1 = require("..");
 /* eslint-disable no-shadow */
 /** The names of types that support animation */

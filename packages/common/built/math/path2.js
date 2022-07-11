@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Path2 = void 0;
 const _1 = require(".");
 /**
  * Represents a 2D path made up of multiple 2D points

@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Execution = void 0;
 const __1 = require("../..");
 const internal_1 = require("../../internal");
 // break import cycle
@@ -110,8 +111,11 @@ class Execution extends protocol_1.Protocol {
         /** @private */
         this['recv-trigger-event-raised'] = (payload) => {
             this.emit('protocol.trigger-event-raised', {
+                // @ts-ignore
                 colliderOwnerId: payload.actorId,
+                // @ts-ignore
                 eventType: payload.eventType,
+                // @ts-ignore
                 otherColliderOwnerId: payload.otherActorId
             });
         };

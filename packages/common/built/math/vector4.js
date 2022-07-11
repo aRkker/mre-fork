@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Vector4 = void 0;
 const _1 = require(".");
 /**
  * Vector4 class created for EulerAngle class conversion to Quaternion

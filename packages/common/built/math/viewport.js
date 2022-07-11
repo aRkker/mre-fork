@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Viewport = void 0;
 /**
  * Class used to represent a viewport on screen
  */

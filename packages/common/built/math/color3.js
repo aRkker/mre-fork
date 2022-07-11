@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Color3 = void 0;
 const _1 = require(".");
 /**
  * Class used to hold a RBG color

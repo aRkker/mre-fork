@@ -24,7 +24,7 @@ export declare class Context implements UserEntryExitPoint {
     get internal(): ContextInternal;
     private _emitter;
     /** @hidden */
-    get emitter(): events.EventEmitter;
+    get emitter(): events;
     private _sessionId;
     private _conn;
     private _rpcChannels;

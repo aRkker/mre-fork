@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.filterEmpty = void 0;
 /**
  * @hidden
  * If `obj` is an empty object, return undefined.

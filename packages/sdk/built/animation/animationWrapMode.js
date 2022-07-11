@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AnimationWrapMode = void 0;
 /**
  * Indicates how an animation should behave when it reaches the end.
  */

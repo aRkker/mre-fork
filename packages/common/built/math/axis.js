@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Axis = void 0;
 const _1 = require(".");
 /** Defines the 3 main axes */
 class Axis {

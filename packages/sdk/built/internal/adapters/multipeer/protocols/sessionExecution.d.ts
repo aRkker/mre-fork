@@ -12,6 +12,6 @@ export declare class SessionExecution extends Protocol implements Middleware {
     private session;
     constructor(session: Session);
     /** @private */
-    beforeRecv: (message: Message<import("../../../payloads").Payload>) => Message<import("../../../payloads").Payload>;
+    beforeRecv: (message: Message) => Message;
 }
 //# sourceMappingURL=sessionExecution.d.ts.map

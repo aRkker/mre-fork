@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.HTTPHeaders = void 0;
 /** @hidden */
 exports.HTTPHeaders = {
     SessionID: 'x-ms-mixed-reality-extension-sessionid',

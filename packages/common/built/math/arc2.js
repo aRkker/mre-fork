@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Arc2 = void 0;
 const _1 = require(".");
 /**
  * This represents an arc in a 2d space.

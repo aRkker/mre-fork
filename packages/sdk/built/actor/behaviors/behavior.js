@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Behavior = void 0;
 /**
  * Abstract class that serves as the base class for all behaviors.
  */

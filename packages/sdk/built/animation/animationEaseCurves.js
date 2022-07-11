@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AnimationEaseCurves = void 0;
 /**
  * Predefined ease curves from https://easings.net/. Curve shapes can be previewed there.
  * Create your own at http://cubic-bezier.com.

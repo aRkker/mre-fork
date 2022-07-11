@@ -5,6 +5,7 @@
  */
 /* eslint-disable max-classes-per-file */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.MreArgumentError = void 0;
 /** Thrown when a function's preconditions are not met. An argument may be null, or of the wrong type/structure. */
 class MreArgumentError extends Error {
     constructor(...args) { super(...args); }

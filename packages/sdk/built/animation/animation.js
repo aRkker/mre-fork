@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Animation = void 0;
 /*!
  * Copyright (c) Microsoft Corporation. All rights reserved.
  * Licensed under the MIT License.
@@ -297,7 +298,7 @@ class Animation {
         var _a;
         if (this.internal.observing) {
             this.context.internal.incrementGeneration();
-            this.internal.patch = (_a = this.internal.patch, (_a !== null && _a !== void 0 ? _a : {}));
+            this.internal.patch = (_a = this.internal.patch) !== null && _a !== void 0 ? _a : {};
             internal_1.readPath(this, this.internal.patch, ...path);
         }
     }

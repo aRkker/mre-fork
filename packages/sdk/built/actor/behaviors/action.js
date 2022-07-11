@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DiscreteAction = void 0;
 /**
  * Class that represents a discrete action that can be in one of two states,
  * started or stopped for each user. @see ActionState

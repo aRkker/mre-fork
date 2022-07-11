@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.PrimitiveShape = void 0;
 /**
  * Describes the general shape of a primitive. Specifics are described in a [[PrimitiveDefinition]] object.
  */

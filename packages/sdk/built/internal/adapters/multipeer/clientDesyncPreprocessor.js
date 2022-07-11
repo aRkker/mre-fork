@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ClientDesyncPreprocessor = void 0;
 const internal_1 = require("../../../internal");
 /**
  * Filter user-exclusive actors to a queue, then flush them after user-join

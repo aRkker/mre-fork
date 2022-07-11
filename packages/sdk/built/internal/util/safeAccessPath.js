@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.safeAccessPath = void 0;
 function safeAccessPath(obj, ...path) {
     for (const part of path) {
         if (!obj[part]) {

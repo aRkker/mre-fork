@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ClientSync = void 0;
 const __1 = require("../../../..");
 const internal_1 = require("../../../../internal");
 // break import cycle
@@ -70,14 +71,13 @@ class ClientSync extends protocols_1.Protocol {
          * Driver for the `create-animations` synchronization stage.
          */
         this['stage:create-animations'] = () => {
-            var _a;
             // Send all create-animation calls. The other animation creators were sent in create-actors.
             for (const message of this.client.session.animationCreators) {
                 if (message.payload.type === 'create-animation-2') {
                     const createMessage = message;
                     const updateMessage = this.client.session.animationSet.get(createMessage.payload.animation.id).update;
                     // merge lastest state into initial state for create
-                    super.sendMessage(Object.assign(Object.assign({}, createMessage), { payload: Object.assign(Object.assign({}, createMessage.payload), { animation: Object.assign(Object.assign({}, createMessage.payload.animation), (_a = updateMessage) === null || _a === void 0 ? void 0 : _a.payload.animation) }) }));
+                    super.sendMessage(Object.assign(Object.assign({}, createMessage), { payload: Object.assign(Object.assign({}, createMessage.payload), { animation: Object.assign(Object.assign({}, createMessage.payload.animation), updateMessage === null || updateMessage === void 0 ? void 0 : updateMessage.payload.animation) }) }));
                 }
             }
         };
@@ -108,7 +108,7 @@ class ClientSync extends protocols_1.Protocol {
      */
     sendMessage(message, promise, timeoutSeconds) {
         var _a;
-        message.id = (_a = message.id, (_a !== null && _a !== void 0 ? _a : __1.newGuid()));
+        message.id = (_a = message.id) !== null && _a !== void 0 ? _a : __1.newGuid();
         const handling = this.handlingForMessage(message);
         switch (handling) {
             case 'allow': {

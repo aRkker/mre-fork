@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.NullConnection = void 0;
 const events_1 = require("events");
 const internal_1 = require("../../internal");
 /**

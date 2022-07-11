@@ -4,6 +4,7 @@
  * Licensed under the MIT License.
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Permissions = void 0;
 /**
  * The set of permissions MREs can request from users, and users can grant.
  */
