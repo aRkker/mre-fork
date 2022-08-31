@@ -359,7 +359,7 @@ export class ContextInternal {
 
 	public update() {
 		// Early out if no state changes occurred.
-		if (this.generation === this.prevGeneration) {
+		if (JSON.parse(process.env.FORCE_GEN_UPDATE) === true && this.generation === this.prevGeneration) {
 			// console.log('QUITTING THE UPDATE');
 
 			return;
