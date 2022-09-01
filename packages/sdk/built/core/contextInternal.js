@@ -245,9 +245,11 @@ class ContextInternal {
     }
     update() {
         // Early out if no state changes occurred.
-        if (JSON.parse(process.env.FORCE_GEN_UPDATE) === true && this.generation === this.prevGeneration) {
+        if (!process.env.FORCE_GEN_UPDATE || JSON.parse(process.env.FORCE_GEN_UPDATE) === true) {
+            if (this.generation === this.prevGeneration) {
+                return;
+            }
             // console.log('QUITTING THE UPDATE');
-            return;
         }
         this.prevGeneration = this.generation;
         const syncObjects = [
