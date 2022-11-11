@@ -3,7 +3,7 @@
  * Licensed under the MIT License.
  */
 import * as Restify from 'restify';
-import { Adapter, AdapterOptions } from '../internal';
+import { Adapter, AdapterOptions, Session } from '../internal';
 /**
  * Multi-peer adapter options
  */
@@ -27,7 +27,9 @@ export declare type MultipeerAdapterOptions = AdapterOptions & {
  *  - Peer-to-peer multiuser topologies
  */
 export declare class MultipeerAdapter extends Adapter {
-    private sessions;
+    sessions: {
+        [id: string]: Session;
+    };
     /** @override */
     protected get options(): MultipeerAdapterOptions;
     /**

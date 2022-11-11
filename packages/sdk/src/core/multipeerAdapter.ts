@@ -57,7 +57,7 @@ export type MultipeerAdapterOptions = AdapterOptions & {
 export class MultipeerAdapter extends Adapter {
 
 	// FUTURE: Make these child processes?
-	private sessions: { [id: string]: Session } = {};
+	public sessions: { [id: string]: Session } = {};
 
 	/** @override */
 	protected get options(): MultipeerAdapterOptions { return this._options; }
