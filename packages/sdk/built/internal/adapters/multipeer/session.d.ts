@@ -37,8 +37,8 @@ export declare class Session extends EventEmitter {
     get assetCreators(): Message<Payloads.LoadAssets | Payloads.CreateAsset>[];
     get animationSet(): Map<Guid, Partial<SyncAnimation>>;
     get animations(): IterableIterator<Partial<SyncAnimation>>;
-    get animationCreators(): Message<Payloads.CreateActorCommon | Payloads.CreateAnimation2>[];
-    get animationCreatorSet(): Map<Guid, Message<Payloads.CreateActorCommon | Payloads.CreateAnimation2>>;
+    get animationCreators(): Message<Payloads.CreateAnimation2 | Payloads.CreateActorCommon>[];
+    get animationCreatorSet(): Map<Guid, Message<Payloads.CreateAnimation2 | Payloads.CreateActorCommon>>;
     get actorSet(): Map<Guid, Partial<SyncActor>>;
     get assetSet(): Map<Guid, Partial<SyncAsset>>;
     get assetCreatorSet(): Map<Guid, Message<Payloads.LoadAssets | Payloads.CreateAsset>>;
@@ -68,7 +68,7 @@ export declare class Session extends EventEmitter {
      * Removes the client from the session
      */
     leave(clientId: Guid): void;
-    private setAuthoritativeClient;
+    setAuthoritativeClient(clientId: Guid): void;
     private recvFromClient;
     private recvFromApp;
     preprocessFromApp(message: Message): Message;

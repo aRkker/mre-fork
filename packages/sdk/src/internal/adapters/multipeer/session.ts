@@ -179,7 +179,7 @@ export class Session extends EventEmitter {
 		} catch { }
 	}
 
-	private setAuthoritativeClient(clientId: Guid) {
+	public setAuthoritativeClient(clientId: Guid) {
 		const newAuthority = this._clientSet.get(clientId);
 		if (!newAuthority) {
 			log.error('network', `[ERROR] setAuthoritativeClient: client ${clientId} does not exist.`);
