@@ -389,7 +389,9 @@ exports.Rules = {
     'perform-action': Object.assign(Object.assign({}, ClientOnlyRule), { session: Object.assign(Object.assign({}, exports.DefaultRule.session), { beforeReceiveFromClient: (session, client, message) => {
                 // Store the client id of the client that is performing the grab.
                 if (process.env.PROCESS_PERFORM_ACTIONS === '0'
-                    && message.payload.actionName.toLowerCase() !== 'grab') {
+                    &&
+                        (message.payload.actionName.toLowerCase() !== 'grab' &&
+                            message.payload.actionName.toLowerCase() !== 'click')) {
                     return;
                 }
                 const payload = message.payload;
